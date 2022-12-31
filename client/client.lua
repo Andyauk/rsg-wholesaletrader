@@ -74,6 +74,16 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function()
                 }
             },
             {
+                header = "Job Wagon",
+                txt = "",
+                icon = "fas fa-horse",
+                params = {
+                    event = 'rsg-jobwagon:client:openWagonMenu',
+                    isServer = false,
+                    args = {},
+                }
+            },
+            {
                 header = ">> Close Menu <<",
                 txt = '',
                 params = {
