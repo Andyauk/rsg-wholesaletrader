@@ -42,11 +42,11 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
         currentjob = job
         exports['rsg-menu']:openMenu({
             {
-                header = 'Wholesale Trader',
+                header = Lang:t('menu.wholesale_trader'),
                 isMenuHeader = true,
             },
             {
-                header = "Wholesale Storage",
+                header = Lang:t('menu.wholesale_storage'),
                 txt = "",
                 icon = "fas fa-box",
                 params = {
@@ -56,7 +56,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
                 }
             },
             {
-                header = "Wholesale Imports",
+                header = Lang:t('menu.wholesale_imports'),
                 txt = "",
                 icon = "fas fa-box",
                 params = {
@@ -66,7 +66,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
                 }
             },
             {
-                header = "Job Management",
+                header = Lang:t('menu.job_management'),
                 txt = "",
                 icon = "fas fa-user-circle",
                 params = {
@@ -76,7 +76,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
                 }
             },
             {
-                header = "Job Wagon",
+                header = Lang:t('menu.job_wagon'),
                 txt = "",
                 icon = "fas fa-horse",
                 params = {
@@ -86,7 +86,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
                 }
             },
             {
-                header = ">> Close Menu <<",
+                header = Lang:t('menu.close_menu'),
                 txt = '',
                 params = {
                     event = 'rsg-menu:closeMenu',
@@ -94,7 +94,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
             },
         })
     else
-        RSGCore.Functions.Notify('you are not authorised!', 'error')
+        RSGCore.Functions.Notify(Lang:t('error.not_authorised'), 'error')
     end
 end)
 
@@ -111,7 +111,7 @@ AddEventHandler('rsg-wholesaletrader:client:openShop', function()
         ShopItems.slots = #Config.WholesaleShop
         TriggerServerEvent("inventory:server:OpenInventory", "shop", "WholesaleShop_"..math.random(1, 99), ShopItems)
     else
-        RSGCore.Functions.Notify('you don\'t have the required access', 'error')
+        RSGCore.Functions.Notify(Lang:t('error.not_authorised'), 'error')
     end
 end)
 
