@@ -17,7 +17,24 @@ Config.WholesaleBlip = {
 
 -- wholesale prompt locations
 Config.WholesaleLocations = {
-    {name = 'Wholesale Trader', location = 'stdeniswholesale', coords = vector3(2349.6372, -1477.177, 46.921913 -0.8), showblip = true, showmarker = true}, -- saint denis
+
+    {   -- saint denis
+        name = 'St Denis Wholesale Trader',
+        prompt = 'wholesale-1',
+        job = 'stdeniswholesale',
+        coords = vector3(2349.6372, -1477.177, 46.921913 -0.8),
+        showblip = true,
+        showmarker = true
+    },
+    {    -- blackwater
+        name = 'Blackwater Wholesale Trader',
+        prompt = 'wholesale-2',
+        job = 'blkwholesale',
+        coords = vector3(-738.3149, -1337.646, 44.176853 -0.8),
+        showblip = true,
+        showmarker = true
+    }, 
+    
 }
 
 Config.WholesaleShop = {

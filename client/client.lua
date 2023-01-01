@@ -1,15 +1,16 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
 local PlayerData = RSGCore.Functions.GetPlayerData()
+local currentjob
 
 -----------------------------------------------------------------------------------
 
 -- wholesale prompts and blips
 Citizen.CreateThread(function()
     for wholesale, v in pairs(Config.WholesaleLocations) do
-        exports['rsg-core']:createPrompt(v.location, v.coords, RSGCore.Shared.Keybinds['J'], 'Open ' .. v.name, {
+        exports['rsg-core']:createPrompt(v.prompt, v.coords, RSGCore.Shared.Keybinds['J'], 'Open ' .. v.name, {
             type = 'client',
             event = 'rsg-wholesaletrader:client:openMenu',
-            args = { v.location },
+            args = { v.job },
         })
         if v.showblip == true then
             local WholesaleTraderBlip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, v.coords)
@@ -35,9 +36,10 @@ end)
 -----------------------------------------------------------------------------------
 
 -- wholesale trader menu
-RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function()
-    local job = RSGCore.Functions.GetPlayerData().job.name
-    if job == Config.JobRequired then
+RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
+    local playerjob = RSGCore.Functions.GetPlayerData().job.name
+    if playerjob == job then
+        currentjob = job
         exports['rsg-menu']:openMenu({
             {
                 header = 'Wholesale Trader',
@@ -102,7 +104,7 @@ end)
 RegisterNetEvent('rsg-wholesaletrader:client:openShop')
 AddEventHandler('rsg-wholesaletrader:client:openShop', function()
     local job = RSGCore.Functions.GetPlayerData().job.name
-    if job == Config.JobRequired then
+    if job == currentjob then
         local ShopItems = {}
         ShopItems.label = "Wholesale Shop"
         ShopItems.items = Config.WholesaleShop
@@ -118,12 +120,12 @@ end)
 -- wholesale trader general storage
 RegisterNetEvent('rsg-wholesaletrader:client:storage', function()
     local job = RSGCore.Functions.GetPlayerData().job.name
-    if job == Config.JobRequired then
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", Config.StorageName, {
+    if job == currentjob then
+        TriggerServerEvent("inventory:server:OpenInventory", "stash", currentjob, {
             maxweight = Config.StorageMaxWeight,
             slots = Config.StorageMaxSlots,
         })
-        TriggerEvent("inventory:client:SetCurrentStash", Config.StorageName)
+        TriggerEvent("inventory:client:SetCurrentStash", currentjob)
     end
 end)
 
