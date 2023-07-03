@@ -24,12 +24,24 @@ end)
 -- draw marker if set to true in config
 CreateThread(function()
     while true do
-        Wait(1)
-        for trapper, v in pairs(Config.WholesaleLocations) do
-            if v.showmarker == true then
-                Citizen.InvokeNative(0x2A32FAA57B937173, 0x07DCE236, v.coords, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 255, 215, 0, 155, false, false, false, 1, false, false, false)
+        local sleep = 1000
+
+        for _, v in pairs(Config.WholesaleLocations) do
+            if v.showmarker then
+                local ped = PlayerPedId()
+                local coords = GetEntityCoords(ped)
+                local coord = v.coords
+                local distance = #(coords - coord)
+
+                if distance <= 10.0 then
+                    sleep = 4
+
+                    Citizen.InvokeNative(0x2A32FAA57B937173, 0x07DCE236, v.coords, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 255, 215, 0, 155, false, false, false, 1, false, false, false)
+                end
             end
         end
+
+        Wait(sleep)
     end
 end)
 
