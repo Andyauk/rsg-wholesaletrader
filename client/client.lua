@@ -25,86 +25,63 @@ end)
 CreateThread(function()
     while true do
         local sleep = 1000
-
         for _, v in pairs(Config.WholesaleLocations) do
             if v.showmarker then
                 local ped = PlayerPedId()
                 local coords = GetEntityCoords(ped)
                 local coord = v.coords
                 local distance = #(coords - coord)
-
                 if distance <= 10.0 then
                     sleep = 4
-
                     Citizen.InvokeNative(0x2A32FAA57B937173, 0x07DCE236, v.coords, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 255, 215, 0, 155, false, false, false, 1, false, false, false)
                 end
             end
         end
-
         Wait(sleep)
     end
 end)
 
 -----------------------------------------------------------------------------------
-
 -- wholesale trader menu
 RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
     local playerjob = RSGCore.Functions.GetPlayerData().job.name
     if playerjob == job then
         currentjob = job
-        exports['rsg-menu']:openMenu({
-            {
-                header = Lang:t('menu.wholesale_trader'),
-                isMenuHeader = true,
-            },
-            {
-                header = Lang:t('menu.wholesale_storage'),
-                txt = "",
-                icon = "fas fa-box",
-                params = {
+        lib.registerContext({
+            id = 'wholesaletrader_menu',
+            title = Lang:t('menu.wholesale_trader'),
+            options = {
+                {
+                    title = Lang:t('menu.wholesale_storage'),
+                    description = '',
+                    icon = 'fas fa-box',
                     event = 'rsg-wholesaletrader:client:storage',
-                    isServer = false,
-                    args = {},
-                }
-            },
-            {
-                header = Lang:t('menu.wholesale_imports'),
-                txt = "",
-                icon = "fas fa-box",
-                params = {
+                    arrow = true
+                },
+                {
+                    title = Lang:t('menu.wholesale_imports'),
+                    description = '',
+                    icon = 'fas fa-box',
                     event = 'rsg-wholesaletrader:client:openShop',
-                    isServer = false,
-                    args = {},
-                }
-            },
-            {
-                header = Lang:t('menu.job_management'),
-                txt = "",
-                icon = "fas fa-user-circle",
-                params = {
+                    arrow = true
+                },
+                {
+                    title = Lang:t('menu.job_management'),
+                    description = '',
+                    icon = 'fas fa-user-circle',
                     event = 'rsg-bossmenu:client:OpenMenu',
-                    isServer = false,
-                    args = {},
-                }
-            },
-            {
-                header = Lang:t('menu.job_wagon'),
-                txt = "",
-                icon = "fas fa-horse",
-                params = {
+                    arrow = true
+                },
+                {
+                    title = Lang:t('menu.job_wagon'),
+                    description = '',
+                    icon = 'fas fa-horse',
                     event = 'rsg-jobwagon:client:openWagonMenu',
-                    isServer = false,
-                    args = {},
-                }
-            },
-            {
-                header = Lang:t('menu.close_menu'),
-                txt = '',
-                params = {
-                    event = 'rsg-menu:closeMenu',
-                }
-            },
+                    arrow = true
+                },
+            }
         })
+        lib.showContext("wholesaletrader_menu")
     else
         RSGCore.Functions.Notify(Lang:t('error.not_authorised'), 'error')
     end

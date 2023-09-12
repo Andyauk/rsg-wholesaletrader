@@ -14,11 +14,17 @@ server_scripts {
 }
 
 shared_scripts {
+    '@ox_lib/init.lua',
     '@rsg-core/shared/locale.lua',
     'locales/en.lua', -- Change this to your preferred language
     'config.lua'
 }
 
-dependency 'rsg-core'
+dependencies {
+    'rsg-core',
+    'rsg-bossmenu',
+    'rsg-jobwagon',
+    'ox_lib'
+}
 
 lua54 'yes'
