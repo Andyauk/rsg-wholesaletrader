@@ -22,7 +22,7 @@ shared_scripts {
 
 dependencies {
     'rsg-core',
-    'rsg-management',
+    'rsg-bossmenu',
     'rsg-jobwagon',
     'ox_lib'
 }
