@@ -69,7 +69,7 @@ RegisterNetEvent('rsg-wholesaletrader:client:openMenu', function(job)
                     title = Lang:t('menu.job_management'),
                     description = '',
                     icon = 'fas fa-user-circle',
-                    event = 'rsg-bossmenu:client:OpenMenu',
+                    event = 'rsg-bossmenu:client:mainmenu',
                     arrow = true
                 },
                 {
