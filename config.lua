@@ -1,10 +1,8 @@
 Config = {}
 
 -- settings
-Config.JobRequired = 'wholesaletrader'
 Config.StorageMaxWeight = 4000000
 Config.StorageMaxSlots = 48
-Config.StorageName = 'Wholesale_Storage' -- do not change this once active
 
 -----------------------------------------------------------------------------------
 
@@ -23,37 +21,25 @@ Config.WholesaleLocations = {
         prompt = 'wholesale-1',
         job = 'stdeniswholesale',
         coords = vector3(2349.6372, -1477.177, 46.921913 -0.8),
-        showblip = true,
-        showmarker = true
+        showblip = true
     },
     {    -- blackwater
         name = 'Blackwater Wholesale Trader',
         prompt = 'wholesale-2',
         job = 'blkwholesale',
         coords = vector3(-738.3149, -1337.646, 44.176853 -0.8),
-        showblip = true,
-        showmarker = true
+        showblip = true
     }, 
     
 }
 
 Config.WholesaleShop = {
-    [1] = {
-        name = 'beer',
-        price = 1,
-        amount = 5000,
-        info = {},
-        type = 'item',
-        slot = 1,
-    },
-    [2] = {
-        name = 'whiskey',
-        price = 2,
-        amount = 5000,
-        info = {},
-        type = 'item',
-        slot = 2,
-    },
+
+    [1] = { name = 'malt',   price = 0.05, amount = 5000, info = {}, type = 'item', slot = 1 },
+    [2] = { name = 'hops',   price = 0.05, amount = 5000, info = {}, type = 'item', slot = 2 },
+    [3] = { name = 'yeast',  price = 0.05, amount = 5000, info = {}, type = 'item', slot = 3 },
+    [4] = { name = 'bottle', price = 0.10, amount = 5000, info = {}, type = 'item', slot = 4 },
+
 }
 
 -----------------------------------------------------------------------------------

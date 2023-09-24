@@ -5,6 +5,13 @@ game 'rdr3'
 author 'RexShack#3041'
 description 'rsg-wholesaletrader'
 
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@rsg-core/shared/locale.lua',
+    'locales/en.lua', -- Change this to your preferred language
+    'config.lua'
+}
+
 client_scripts {
     'client/client.lua'
 }
@@ -13,18 +20,11 @@ server_scripts {
     'server/server.lua'
 }
 
-shared_scripts {
-    '@ox_lib/init.lua',
-    '@rsg-core/shared/locale.lua',
-    'locales/en.lua', -- Change this to your preferred language
-    'config.lua'
-}
-
 dependencies {
     'rsg-core',
     'rsg-bossmenu',
-    'rsg-jobwagon',
-    'ox_lib'
+    'ox_lib',
+    'rsg-jobwagon'
 }
 
 lua54 'yes'
